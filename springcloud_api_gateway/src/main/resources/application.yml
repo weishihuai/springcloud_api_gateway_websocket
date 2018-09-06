@@ -1,0 +1,22 @@
+server:
+  port: 3333
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:1111/eureka/
+zuul:
+   routes:
+    api-a:
+      path: /**
+      url: http://localhost:2222
+#      service-id:  eureka-websocket-service
+      customSensitiveHeaders: true
+   ws:
+      brokerages:
+        api-a:
+          end-points: /websocket-test
+          brokers:  /topic
+          destination-prefixes: /app
+spring:
+  application:
+    name: eureka-api-gateway
